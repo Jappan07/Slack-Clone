@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React, { useState } from "react"
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Header from "./components/Header/Header"
+import Sidebar from "./components/Sidebar/Sidebar"
+import Chat from "./components/Chat/Chat"
 
 function App() {
+  const [user, setUser] = useState("Jappan")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        {!user ? (
+          <h1>Login Page</h1>
+        ) : (
+          <>
+            {/* header */}
+            < Header />
+            <div className="app_body">
+              {/* sidebar */}
+              <Sidebar />
+              <Switch>
+                <Route path="/room/:roomId">
+                  <Chat />
+                </Route>
+                <Route path="/">
+                  <h1>Welcome</h1>
+                </Route>
+              </Switch>
+            </div>
+          </>
+        )}
+      </Router>
     </div>
   );
 }
 
 export default App;
+
