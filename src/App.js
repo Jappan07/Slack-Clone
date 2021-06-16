@@ -4,15 +4,16 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Header from "./components/Header/Header"
 import Sidebar from "./components/Sidebar/Sidebar"
 import Chat from "./components/Chat/Chat"
+import Login from "./components/Login/Login"
 
 function App() {
-  const [user, setUser] = useState("Jappan")
+  const [user, setUser] = useState(null)
 
   return (
     <div className="App">
       <Router>
         {!user ? (
-          <h1>Login Page</h1>
+          <Login />
         ) : (
           <>
             {/* header */}
